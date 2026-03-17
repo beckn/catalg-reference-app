@@ -1,0 +1,271 @@
+{
+  "$comment": "This file defines rendering templates and data path mappings for Beckn protocol items in the CDS Reference App",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beckn.org/schema/cds-reference-app/renderer/v1",
+  "version": "1.0.0",
+  "templates": {
+    "discoveryCard": {
+      "id": "discoveryCard",
+      "description": "Rich card template for search results displaying key product information with image, category, rating, and price",
+      "html": "<div class=\"discovery-card\">\n  <div class=\"card-image-container\">\n    <img src=\"{{imageUrl}}\" alt=\"{{itemName}}\" class=\"card-image\" />\n    <div class=\"card-image-overlay\"></div>\n    <span class=\"category-badge\">{{category}}</span>\n    <div class=\"rating-badge\">\n      <span class=\"rating-star\">⭐</span>\n      <span class=\"rating-value\">{{ratingValue}}</span>\n    </div>\n  </div>\n  <div class=\"card-content\">\n    <h3 class=\"item-name\">{{itemName}}</h3>\n    <p class=\"item-description\">{{shortDescription}}</p>\n    <hr class=\"divider\" />\n    <div class=\"card-footer\">\n      <div class=\"price-section\">\n        <span class=\"price-label\">{{priceLabel}}</span>\n        <span class=\"price-value\">{{formattedPrice}}</span>\n      </div>\n      <button class=\"action-button\">{{actionButtonLabel}}</button>\n    </div>\n  </div>\n</div>",
+      "dataPaths": {
+        "itemId": "beckn:id",
+        "itemName": "beckn:descriptor.schema:name",
+        "shortDescription": "beckn:descriptor.beckn:longDesc",
+        "imageUrl": "beckn:descriptor.schema:image[0]",
+        "category": "beckn:category.schema:name",
+        "ratingValue": "beckn:rating.beckn:ratingValue",
+        "ratingCount": "beckn:rating.beckn:ratingCount",
+        "priceValue": "beckn:price.value",
+        "currency": "beckn:price.currency",
+        "formattedPrice": "beckn:price.value",
+        "priceLabel": "config.views.discovery.labels.priceLabel",
+        "actionButtonLabel": "config.views.discovery.labels.viewButton"
+      }
+    },
+    "detailView": {
+      "id": "detailView",
+      "description": "Full detail page template showing comprehensive product information including extended descriptions, specifications, and pricing",
+      "html": "<div class=\"detail-view\">\n  <div class=\"detail-hero\">\n    <div class=\"detail-image-gallery\">\n      <img src=\"{{imageUrl}}\" alt=\"{{itemName}}\" class=\"detail-image-main\" />\n    </div>\n    <div class=\"detail-header\">\n      <div class=\"detail-meta\">\n        <span class=\"category-badge\">{{category}}</span>\n        <div class=\"rating-display\">\n          <span class=\"rating-stars\">{{ratingValue}}</span>\n          <span class=\"rating-count\">({{ratingCount}} reviews)</span>\n        </div>\n      </div>\n      <h1 class=\"detail-title\">{{itemName}}</h1>\n      <p class=\"detail-description\">{{longDescription}}</p>\n      <div class=\"detail-pricing\">\n        <div class=\"price-main\">\n          <span class=\"price-label\">{{priceLabel}}</span>\n          <span class=\"price-value\">{{currency}} {{priceValue}}</span>\n        </div>\n        <button class=\"action-button-primary\">{{actionButtonLabel}}</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"detail-body\">\n    <section class=\"detail-section\">\n      <h2>Product Details</h2>\n      <dl class=\"detail-attributes\">\n        <dt>Item ID</dt>\n        <dd>{{itemId}}</dd>\n        <dt>Category</dt>\n        <dd>{{category}}</dd>\n        <dt>Availability</dt>\n        <dd>{{availabilityStatus}}</dd>\n      </dl>\n    </section>\n  </div>\n</div>",
+      "dataPaths": {
+        "itemId": "beckn:id",
+        "itemName": "beckn:descriptor.schema:name",
+        "shortDescription": "beckn:descriptor.beckn:shortDesc",
+        "longDescription": "beckn:descriptor.beckn:longDesc",
+        "imageUrl": "beckn:descriptor.schema:image[0]",
+        "imageGallery": "beckn:descriptor.schema:image",
+        "category": "beckn:category.schema:name",
+        "categoryId": "beckn:category.beckn:id",
+        "ratingValue": "beckn:rating.beckn:ratingValue",
+        "ratingCount": "beckn:rating.beckn:ratingCount",
+        "priceValue": "beckn:price.value",
+        "currency": "beckn:price.currency",
+        "formattedPrice": "beckn:price.value",
+        "availabilityStatus": "beckn:availableAt.beckn:status",
+        "location": "beckn:availableAt.geo",
+        "priceLabel": "config.views.discovery.labels.priceLabel",
+        "actionButtonLabel": "config.views.discovery.labels.viewButton"
+      }
+    },
+    "compactCard": {
+      "id": "compactCard",
+      "description": "Minimal compact card for grid or list views showing essential information only",
+      "html": "<div class=\"compact-card\">\n  <img src=\"{{imageUrl}}\" alt=\"{{itemName}}\" class=\"compact-image\" />\n  <div class=\"compact-content\">\n    <span class=\"compact-category\">{{category}}</span>\n    <h4 class=\"compact-name\">{{itemName}}</h4>\n    <div class=\"compact-footer\">\n      <span class=\"compact-price\">{{formattedPrice}}</span>\n      <span class=\"compact-rating\">⭐ {{ratingValue}}</span>\n    </div>\n  </div>\n</div>",
+      "dataPaths": {
+        "itemId": "beckn:id",
+        "itemName": "beckn:descriptor.schema:name",
+        "imageUrl": "beckn:descriptor.schema:image[0]",
+        "category": "beckn:category.schema:name",
+        "ratingValue": "beckn:rating.beckn:ratingValue",
+        "priceValue": "beckn:price.value",
+        "currency": "beckn:price.currency",
+        "formattedPrice": "beckn:price.value"
+      }
+    }
+  },
+  "stylingHints": {
+    "discoveryCard": {
+      "layout": {
+        "display": "flex",
+        "flexDirection": "column",
+        "width": "100%",
+        "aspectRatio": {
+          "image": "3:2",
+          "comment": "Image section uses 66.67% padding-top for 3:2 aspect ratio"
+        }
+      },
+      "spacing": {
+        "cardPadding": "24px",
+        "contentGap": "16px",
+        "badgeOffset": "16px"
+      },
+      "typography": {
+        "itemName": {
+          "fontSize": "1.1rem",
+          "fontWeight": 700,
+          "lineHeight": 1.4,
+          "maxLines": 2,
+          "overflow": "ellipsis"
+        },
+        "description": {
+          "fontSize": "0.875rem",
+          "lineHeight": 1.6,
+          "maxLines": 2,
+          "overflow": "ellipsis"
+        },
+        "priceLabel": {
+          "fontSize": "0.7rem",
+          "fontWeight": 600,
+          "textTransform": "uppercase",
+          "letterSpacing": "0.05em"
+        },
+        "priceValue": {
+          "fontSize": "1.5rem",
+          "fontWeight": 800,
+          "letterSpacing": "-0.02em"
+        },
+        "categoryBadge": {
+          "fontSize": "0.7rem",
+          "fontWeight": 700,
+          "letterSpacing": "0.03em"
+        },
+        "ratingValue": {
+          "fontSize": "0.8rem",
+          "fontWeight": 700
+        }
+      },
+      "colors": {
+        "cardBorder": "alpha(primary, 0.08)",
+        "cardBackground": "background.paper",
+        "imageOverlay": "linear-gradient(180deg, transparent 0%, alpha(primary, 0) 50%, alpha(primary, 0.05) 100%)",
+        "categoryBadge": {
+          "background": "rgba(255, 255, 255, 0.95)",
+          "color": "primary.main",
+          "border": "alpha(primary, 0.15)"
+        },
+        "ratingBadge": {
+          "background": "rgba(0, 0, 0, 0.75)",
+          "color": "#ffffff"
+        },
+        "divider": "alpha(primary, 0.08)",
+        "priceValue": "primary.main"
+      },
+      "effects": {
+        "hover": {
+          "transform": "translateY(-12px)",
+          "boxShadow": "0 20px 40px alpha(primary, 0.15), 0 0 0 1px alpha(primary, 0.1)",
+          "borderColor": "alpha(primary, 0.2)",
+          "imageOverlayOpacity": 0.15,
+          "buttonTransform": "translateX(0)",
+          "buttonOpacity": 1
+        },
+        "transitions": {
+          "card": "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          "button": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          "overlay": "opacity 0.4s ease"
+        }
+      },
+      "borderRadius": {
+        "card": "config.theme.shape.borderRadius",
+        "button": "config.theme.shape.buttonRadius",
+        "badge": "config.theme.shape.buttonRadius"
+      },
+      "shadows": {
+        "card": "config.theme.shadows.soft",
+        "cardHover": "config.theme.shadows.hard",
+        "button": "config.theme.shadows.colored",
+        "categoryBadge": "0 4px 12px alpha(primary, 0.1)",
+        "ratingBadge": "0 4px 12px rgba(0, 0, 0, 0.2)"
+      },
+      "button": {
+        "background": "config.theme.gradients.primary",
+        "color": "config.theme.palette.primary.contrastText",
+        "fontSize": "0.85rem",
+        "fontWeight": 700,
+        "padding": "8px 24px",
+        "textTransform": "none",
+        "initialTransform": "translateX(4px)",
+        "initialOpacity": 0.9,
+        "hoverFilter": "brightness(1.1)",
+        "hoverTransform": "translateX(0) scale(1.05)"
+      }
+    },
+    "detailView": {
+      "layout": {
+        "display": "grid",
+        "gridTemplateColumns": "1fr 1fr",
+        "gap": "32px",
+        "maxWidth": "1200px"
+      },
+      "spacing": {
+        "sectionPadding": "32px",
+        "contentGap": "24px"
+      },
+      "typography": {
+        "title": {
+          "fontSize": "2.5rem",
+          "fontWeight": 700,
+          "lineHeight": 1.2
+        },
+        "description": {
+          "fontSize": "1rem",
+          "lineHeight": 1.6
+        },
+        "sectionHeading": {
+          "fontSize": "1.5rem",
+          "fontWeight": 600
+        }
+      }
+    },
+    "compactCard": {
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "gap": "12px",
+        "minHeight": "80px"
+      },
+      "spacing": {
+        "padding": "12px",
+        "gap": "8px"
+      },
+      "typography": {
+        "itemName": {
+          "fontSize": "0.9rem",
+          "fontWeight": 600,
+          "maxLines": 1
+        },
+        "category": {
+          "fontSize": "0.7rem",
+          "fontWeight": 500
+        },
+        "price": {
+          "fontSize": "1rem",
+          "fontWeight": 700
+        }
+      },
+      "image": {
+        "width": "80px",
+        "height": "80px",
+        "objectFit": "cover",
+        "borderRadius": "8px"
+      }
+    }
+  },
+  "dataTransforms": {
+    "comment": "Optional transforms to apply to data before rendering",
+    "formattedPrice": {
+      "type": "currency",
+      "inputFields": [
+        "beckn:price.value",
+        "beckn:price.currency"
+      ],
+      "format": "{currency}{value}",
+      "defaultCurrency": "₹"
+    },
+    "ratingStars": {
+      "type": "rating",
+      "inputField": "beckn:rating.beckn:ratingValue",
+      "maxRating": 5,
+      "renderAs": "stars"
+    },
+    "truncatedDescription": {
+      "type": "text",
+      "inputField": "beckn:descriptor.beckn:longDesc",
+      "maxLength": 120,
+      "suffix": "..."
+    }
+  },
+  "fallbacks": {
+    "comment": "Default values when data is missing",
+    "imageUrl": "https://placehold.co/600x400/e2e8f0/1e293b?text=Item",
+    "itemName": "Unknown Item",
+    "shortDescription": "No description available",
+    "category": "General",
+    "ratingValue": 4.0,
+    "ratingCount": 0,
+    "priceValue": "N/A",
+    "currency": "₹",
+    "priceLabel": "Price",
+    "actionButtonLabel": "View"
+  }
+}
