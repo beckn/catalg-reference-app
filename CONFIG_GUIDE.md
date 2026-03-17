@@ -1,6 +1,6 @@
 # Configuration Guide
 
-This guide explains the structure and common patterns in the `config.json` file for the ONDC Reference Application.
+This guide explains the structure and common patterns in the `config.json` file for the Catalog Reference Application.
 
 ## Overview
 
