@@ -232,7 +232,9 @@
                     {
                         "id": "ondc-retail-grocery",
                         "name": "Retail Grocery",
-                        "schemaTypes": ["grocery"]
+                        "schemaTypes": [
+                            "grocery"
+                        ]
                     }
                 ],
                 "schemaTypes": [
@@ -248,7 +250,9 @@
                     "subscriberUrl": "https://bap.demo.beckn",
                     "subscriberType": "BAP",
                     "networkId": "ondc-retail-grocery",
-                    "schemaTypes": ["grocery"],
+                    "schemaTypes": [
+                        "grocery"
+                    ],
                     "callbackUrl": "https://34.14.221.66.sslip.io/catalog/push"
                 },
                 "labels": {
