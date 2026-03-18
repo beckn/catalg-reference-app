@@ -125,7 +125,7 @@
         "schemas": {
             "GroceryItem": {
                 "label": "Grocery",
-                "contextUrl": "https://becknprotocol.io/schema/GroceryItem/v1/context.jsonld#GroceryItem",
+                "contextUrl": "https://schema.beckn.io/#GroceryItem",
                 "rendererUrl": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/ondc-schema/schema/GroceryItem/v1/renderer.json"
             }
         },
@@ -239,7 +239,7 @@
                     {
                         "key": "grocery",
                         "label": "Grocery Items",
-                        "value": "https://becknprotocol.io/schema/GroceryItem/v1/context.jsonld#GroceryItem",
+                        "value": "https://schema.beckn.io/#GroceryItem",
                         "schemaName": "GroceryItem"
                     }
                 ],
